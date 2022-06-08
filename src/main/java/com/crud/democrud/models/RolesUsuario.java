@@ -16,6 +16,15 @@ import lombok.Data;
 @Table(name = "roles")
 public class RolesUsuario {
 
+    public RolesUsuario() {
+    }
+
+    public RolesUsuario(Long id, UsuarioModel usuarioModel, String nombreRol) {
+        this.id = id;
+        this.usuarioModel = usuarioModel;
+        this.nombreRol = nombreRol;
+    }
+
     /**
      * Identificador de la tupla
      */
