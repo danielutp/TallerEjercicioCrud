@@ -1,60 +1,72 @@
 package com.crud.democrud.models;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.GenerationType;
+import javax.persistence.Column;
+import javax.persistence.OneToMany;
+import javax.persistence.FetchType;
+import javax.persistence.CascadeType;
+import java.util.ArrayList;
+import java.util.List;
+import lombok.Data;
 
-import javax.persistence.*;
-
+@Data
 @Entity
 @Table(name = "usuario")
 public class UsuarioModel {
 
+    /**
+     * Identificador de la tupla
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)
     private Long id;
 
+    /**
+     * Número de teléfono
+     */
     private String nombre;
+
+    /**
+     * Correo electronico
+     */
     private String email;
+
+    /**
+     * Numero de prioridad
+     */
     private Integer prioridad;
 
-    public void setPrioridad(Integer prioridad) {
-        this.prioridad = prioridad;
-    }
 
-    public Integer getPrioridad() {
-        return prioridad;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
+    /**
+     * Constructor de UsuarioModel
+     */
     public UsuarioModel(String nombre, String email, Integer prioridad) {
         this.nombre = nombre;
         this.email = email;
         this.prioridad = prioridad;
     }
 
+    /**
+     * Constructor de UsuarioModel
+     */
     public UsuarioModel() {
-
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
+    /**
+     * Punto de enlace entre la entidad del UsuarioModel y RolesUsuario (un usuario puede tener muchos números roles)
+     */
+    @OneToMany(
+            fetch = FetchType.EAGER,
+            targetEntity = RolesUsuario.class,
+            cascade = CascadeType.REMOVE,
+            mappedBy = "usuarioModel"
+    )
+    @JsonManagedReference
+    private List<UsuarioModel> roles = new ArrayList<>();
 }
+
