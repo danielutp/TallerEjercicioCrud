@@ -25,6 +25,12 @@ public class UsuarioController {
         return this.usuarioService.guardarUsuario(usuario);
     }
 
+    @PostMapping(path = "/{id}")
+    public UsuarioModel actualizaUsuario(@RequestBody UsuarioModel usuario,@PathVariable("id") Long id) {
+        usuario.setId(id);
+        return this.usuarioService.guardarUsuario(usuario);
+    }
+
     @GetMapping(path = "/{id}")
     public Optional<UsuarioModel> obtenerUsuarioPorId(@PathVariable("id") Long id) {
         return this.usuarioService.obtenerPorId(id);
