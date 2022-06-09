@@ -1,7 +1,6 @@
 # TallerEjercicioCrud
 ------------------------------
-Se hace la conexion la relacion de  @OneToMany en la clase UsuarioModel y en la clase de RolesUsuario de @ManyToOne y que un usuario puede tener muchos roles.
-
+Se hace la conexion la relacion de  @OneToMany en la clase UsuarioModel y en la clase de RolesUsuario de @ManyToOne y que un usuario puede tener muchos roles, aunque el ejercicio nos pedia crear otra tabla en donde guardemos los roles, yo hubiera creado una relacion de muchos a muchos y por ende saldria otra tabla, intermetia entre esas dos tablas por la relacion de muchos a muchos.
 
 -----------------------------------------------------------
 Se manda la captura de pantalla de postman donde se trae toda la lista de usuarios y dentro de ellos esta su rol.
